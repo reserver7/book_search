@@ -13,9 +13,3 @@ export interface CustomSelectProps
   value?: string | number
   onSelect: (value: string | number) => void
 }
-
-export const SearchOption = [
-  { label: '제목', value: 'title' },
-  { label: '저자명', value: 'person' },
-  { label: '출판사', value: 'publisher' },
-] as Option[]

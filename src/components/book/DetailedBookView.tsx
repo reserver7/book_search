@@ -1,4 +1,4 @@
-import { BookType } from '@/models/Book'
+import { BookType } from '../../models/Book'
 import styled from '@emotion/styled'
 import { TiArrowSortedUp } from 'react-icons/ti'
 import Button from '../shared/Button'

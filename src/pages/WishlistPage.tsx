@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
 import { useRecoilValue } from 'recoil'
 import { wishlistState } from '../atoms/searchQueryState'
-import BasicBookView from '../components/book/BasicBookView'
+import BookList from '../components/book/BookList'
+import EmptyState from '../components/book/EmptyState'
 import Flex from '../components/shared/Flex'
 import Text from '../components/shared/Text'
+import ResultCount from '../components/shared/ResultCount'
+import Spacing from '../components/shared/Spacing'
 
 const MainContainer = styled(Flex)`
   flex-direction: column;
@@ -17,13 +20,7 @@ const MainContainer = styled(Flex)`
 const WishlistHeader = styled(Flex)`
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 16px;
-`
-
-const WishlistContainer = styled(Flex)`
-  width: 100%;
-  flex-direction: column;
-  gap: 16px;
+  margin-top: 60px;
 `
 
 const WishlistPage = () => {
@@ -32,31 +29,20 @@ const WishlistPage = () => {
   return (
     <>
       <MainContainer>
-        <Flex direction="column">
+        <Flex direction="column" style={{ marginLeft: '-350px' }}>
           <Text typography="t4" bold>
             내가 찜한 책
           </Text>
         </Flex>
 
-        <WishlistHeader>
-          <Text typography="t5" bold>
-            찜한 책 총 {wishlist.length}권
-          </Text>
-        </WishlistHeader>
+        <Spacing size={60} />
+        <ResultCount resultCount={wishlist.length} message={'찜한 책'} />
 
-        <WishlistContainer>
-          {wishlist.length > 0 ? (
-            wishlist.map((book) => (
-              <BasicBookView
-                key={book.id}
-                book={book}
-                onToggleDetails={() => {}}
-              />
-            ))
-          ) : (
-            <Text typography="t6">찜한 책이 없습니다.</Text>
-          )}
-        </WishlistContainer>
+        {wishlist.length > 0 ? (
+          <BookList books={wishlist} hasNextPage={false} />
+        ) : (
+          <EmptyState message="찜한 책이 없습니다." />
+        )}
       </MainContainer>
     </>
   )

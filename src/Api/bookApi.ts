@@ -1,4 +1,4 @@
-import { ApiResponseType, BookType } from '@/models/Book'
+import { ApiResponseType, BookType } from '../models/Book'
 import axios from 'axios'
 import { loadTitleUUIDMap, saveTitleUUIDMap } from '../utils/uuidUtils'
 
@@ -22,7 +22,7 @@ export const fetchBooksFromAPI = async (
   )
 
   const books = response.data.documents.map((book) => {
-    const id = book.title // Use the book's title directly as the ID
+    const id = book.title
 
     if (!titleUUIDMap[book.title]) {
       titleUUIDMap[book.title] = id

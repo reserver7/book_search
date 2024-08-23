@@ -1,4 +1,4 @@
-import { BookType } from '@/models/Book'
+import { BookType } from '../../models/Book'
 import styled from '@emotion/styled'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import { useRecoilState } from 'recoil'
@@ -25,7 +25,7 @@ export function WishlistToggle({ book }: WishlistToggleProps) {
     setWishlist((prevWishlist) =>
       isWished
         ? prevWishlist.filter((wishlistBook) => wishlistBook.id !== book.id)
-        : [...prevWishlist, book],
+        : [book, ...prevWishlist],
     )
   }
 

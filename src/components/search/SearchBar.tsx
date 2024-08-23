@@ -67,7 +67,7 @@ const SearchBar = () => {
     handleInputClick,
     handleHistoryItemClick,
     handleDeleteHistoryItem,
-    resetSearchTerm, // Add this
+    resetSearchTerm,
   } = useSearchBar()
 
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -111,7 +111,7 @@ const SearchBar = () => {
         <PopupContainer ref={popupRef}>
           <SearchPopup
             onClose={() => setIsPopupOpen(false)}
-            resetSearchTerm={resetSearchTerm} // Pass reset function to SearchPopup
+            resetSearchTerm={resetSearchTerm}
           />
         </PopupContainer>
       )}

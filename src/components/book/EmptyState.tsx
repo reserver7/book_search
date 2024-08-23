@@ -16,11 +16,11 @@ const EmptyStateImage = styled.img`
   margin-bottom: 16px;
 `
 
-const EmptyState = () => (
+const EmptyState = ({ message }: { message: string }) => (
   <EmptyStateContainer>
     <EmptyStateImage src="/images/empty_book.png" alt="empty book" />
     <Text typography="t5" color="gray">
-      검색 결과가 없습니다.
+      {message}
     </Text>
   </EmptyStateContainer>
 )

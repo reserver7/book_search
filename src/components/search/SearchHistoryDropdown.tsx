@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { colors } from '../../styles/colorPalette'
 import SearchHistoryItem from './SearchHistoryItem'
+import { generateUUID } from '../../utils/uuidUtils'
 
 const DropdownContainer = styled.ul`
   width: 352px;
@@ -32,7 +33,7 @@ const SearchHistoryDropdown = ({
     <DropdownContainer>
       {items.map((item) => (
         <SearchHistoryItem
-          key={item}
+          key={generateUUID()}
           item={item}
           onClick={() => onItemClick(item)}
           onDelete={() => onDeleteItem(item)}

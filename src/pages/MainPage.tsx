@@ -3,10 +3,11 @@ import { useRecoilValue } from 'recoil'
 import { searchResultCountState } from '../atoms/searchQueryState'
 import BookList from '../components/book/BookList'
 import EmptyState from '../components/book/EmptyState'
-import ResultCount from '../components/search/ResultCount'
+import ResultCount from '../components/shared/ResultCount'
 import SearchBar from '../components/search/SearchBar'
 import Flex from '../components/shared/Flex'
 import Text from '../components/shared/Text'
+import { useFetchBooks } from '../hooks/useFetchBooks'
 
 const MainContainer = styled(Flex)`
   flex-direction: column;
@@ -29,6 +30,8 @@ const SearchBarRow = styled(Flex)`
 
 const MainPage = () => {
   const resultCount = useRecoilValue(searchResultCountState)
+  const { data, isLoading, isError, fetchNextPage, hasNextPage } =
+    useFetchBooks()
 
   return (
     <>
@@ -45,10 +48,16 @@ const MainPage = () => {
           </SearchBarContainer>
         </Flex>
 
-        <ResultCount />
+        <ResultCount resultCount={resultCount} message={'도서 검색 결과'} />
 
-        <BookList />
-        {resultCount === 0 && <EmptyState />}
+        <BookList
+          books={data?.pages.flat() || []}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isLoading={isLoading}
+          isError={isError}
+        />
+        {resultCount === 0 && <EmptyState message="검색 결과가 없습니다." />}
       </MainContainer>
     </>
   )

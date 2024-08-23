@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
-import { useRecoilValue } from 'recoil'
-import { searchResultCountState } from '../../atoms/searchQueryState'
-import Flex from '../shared/Flex'
-import Spacing from '../shared/Spacing'
-import Text from '../shared/Text'
+import Flex from './Flex'
+import Spacing from './Spacing'
+import Text from './Text'
 
 const ResultCountContainer = styled(Flex)`
   margin-top: 8px;
@@ -12,12 +10,16 @@ const ResultCountContainer = styled(Flex)`
   margin-left: 85px;
 `
 
-const ResultCount = () => {
-  const resultCount = useRecoilValue(searchResultCountState)
-
+const ResultCount = ({
+  resultCount,
+  message,
+}: {
+  resultCount: number
+  message: string
+}) => {
   return (
     <ResultCountContainer>
-      <Text typography="t6">도서 검색 결과 </Text>
+      <Text typography="t6">{message} </Text>
       <Spacing size={14} direction="horizontal" />
       <Text typography="t6">총</Text>
       <Spacing size={2} direction="horizontal" />

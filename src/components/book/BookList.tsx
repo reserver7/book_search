@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useFetchBooks } from '../../hooks/useFetchBooks'
 import LoadingDots from '../shared/LoadingScroll'
 import Skeleton from '../shared/Skeleton'
 import BookItem from './BookItem'
+import { BookType } from '../../models/Book'
+import { generateUUID } from '../../utils/uuidUtils'
 
 const BookListContainer = styled.div`
   width: 100%;
@@ -13,18 +14,29 @@ const BookListContainer = styled.div`
   overflow-x: hidden;
 `
 
-function BookList() {
-  const { data, isLoading, isError, fetchNextPage, hasNextPage } =
-    useFetchBooks()
+type BookListProps = {
+  books: BookType[]
+  fetchNextPage?: () => void
+  hasNextPage?: boolean
+  isLoading?: boolean
+  isError?: boolean
+}
 
+function BookList({
+  books,
+  fetchNextPage,
+  hasNextPage,
+  isLoading = false,
+  isError = false,
+}: BookListProps) {
   if (isLoading) {
     return (
       <BookListContainer>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {Array.from({ length: 5 }).map(() => (
           <Skeleton
-            key={index}
+            key={generateUUID()}
             width="1050px"
-            height="100px"
+            height="100vh"
             style={{ margin: '0 auto' }}
           />
         ))}
@@ -39,15 +51,15 @@ function BookList() {
   return (
     <InfiniteScroll
       style={{ overflow: 'hidden' }}
-      dataLength={data?.pages.flat().length || 0}
-      next={fetchNextPage}
+      dataLength={books.length}
+      next={fetchNextPage || (() => {})}
       hasMore={!!hasNextPage}
       loader={<LoadingDots />}
     >
       <BookListContainer>
-        {data?.pages.flat().map((book) => (
+        {books.map((book) => (
           <BookItem
-            key={book.id}
+            key={generateUUID()}
             book={{
               id: book.id,
               thumbnail: book.thumbnail,

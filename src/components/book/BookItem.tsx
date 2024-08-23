@@ -1,4 +1,4 @@
-import { BookType } from '@/models/Book'
+import { BookType } from '../../models/Book'
 import styled from '@emotion/styled'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'

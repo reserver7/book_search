@@ -6,6 +6,7 @@ import { RecoilRoot } from 'recoil'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import globalStyles from './styles/globalStyles'
+import ScrollToTop from './components/shared/ScrollToTop'
 
 const client = new QueryClient({
   defaultOptions: {},
@@ -17,6 +18,7 @@ root.render(
     <Global styles={globalStyles} />
     <RecoilRoot>
       <QueryClientProvider client={client}>
+        <ScrollToTop />
         <App />
       </QueryClientProvider>
     </RecoilRoot>

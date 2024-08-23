@@ -1,4 +1,4 @@
-import { CustomSelectProps } from '@/models/Select'
+import { CustomSelectProps } from '../../models/Select'
 import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 import Flex from './Flex'
@@ -74,7 +74,7 @@ const Select = ({
     )
     setSelectedLabel(selectedOption?.label || placeholder)
     setIsOpen(false)
-    onSelect(optionValue) // Send the value to the parent
+    onSelect(optionValue)
   }
 
   return (

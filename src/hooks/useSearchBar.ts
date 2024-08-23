@@ -13,7 +13,7 @@ export const useSearchBar = () => {
 
   const handleSearchAction = () => {
     if (searchTerm.trim()) {
-      handleSearch(searchTerm, '') // Perform a main search
+      handleSearch(searchTerm, '')
       setSearchHistory((prev) =>
         [searchTerm, ...prev.filter((item) => item !== searchTerm)].slice(0, 8),
       )
@@ -24,7 +24,7 @@ export const useSearchBar = () => {
   }
 
   const resetSearchTerm = () => {
-    setSearchTerm('') // Clear the search input
+    setSearchTerm('')
   }
 
   useClickOutside(inputContainerRef, () => setIsFocused(false))
@@ -35,7 +35,7 @@ export const useSearchBar = () => {
     searchHistory,
     inputContainerRef,
     setSearchTerm,
-    resetSearchTerm, // Ensure this function is included in the return
+    resetSearchTerm,
     handleSearch: handleSearchAction,
     handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') handleSearchAction()

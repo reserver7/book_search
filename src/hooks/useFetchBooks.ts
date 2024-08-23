@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { fetchBooksFromAPI } from '../Api/bookApi'
+import { fetchBooksFromAPI } from '../api/bookApi'
 import {
   searchQueryState,
   searchResultCountState,

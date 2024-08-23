@@ -1,4 +1,4 @@
-import { BookType } from '@/models/Book'
+import { BookType } from '../models/Book'
 import { atom } from 'recoil'
 
 export const searchQueryState = atom<string>({

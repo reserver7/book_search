@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import useClickOutside from '../../hooks/useClickOutside'
 import { useSearchStateManagement } from '../../hooks/useSearchStateManagement'
-import { SearchOption } from '../../models/Select'
+import { SEARCH_OPTION } from '../../constants/SelectOption'
 import { colors } from '../../styles/colorPalette'
 import Button from '../shared/Button'
 import Flex from '../shared/Flex'
@@ -47,13 +47,13 @@ const SearchButton = styled(Button)`
 
 type SearchPopupProps = {
   onClose: () => void
-  resetSearchTerm: () => void // Add this prop
+  resetSearchTerm: () => void
 }
 
 function SearchPopup({ onClose, resetSearchTerm }: SearchPopupProps) {
   const { handleSearch } = useSearchStateManagement()
   const [selectedValue, setSelectedValue] = useState<string | number>(
-    SearchOption[0].value,
+    SEARCH_OPTION[0].value,
   )
   const [searchInput, setSearchInput] = useState<string>('')
 
@@ -66,7 +66,7 @@ function SearchPopup({ onClose, resetSearchTerm }: SearchPopupProps) {
 
   const handleSearchClick = () => {
     handleSearch(searchInput, selectedValue.toString())
-    resetSearchTerm() // Reset the main search term input
+    resetSearchTerm()
     onClose()
   }
 
@@ -79,8 +79,8 @@ function SearchPopup({ onClose, resetSearchTerm }: SearchPopupProps) {
         <DropdownContainer>
           <div style={{ width: '30%' }}>
             <Select
-              defaultValue={SearchOption[0].value}
-              options={SearchOption}
+              defaultValue={SEARCH_OPTION[0].value}
+              options={SEARCH_OPTION}
               placeholder="제목"
               value={selectedValue}
               onSelect={handleSelectChange}

@@ -1,10 +1,11 @@
-import { BookType } from '@/models/Book'
+import { BookType } from '../../models/Book'
 import styled from '@emotion/styled'
 import { TiArrowSortedDown } from 'react-icons/ti'
 import Button from '../shared/Button'
 import Flex from '../shared/Flex'
 import Text from '../shared/Text'
 import { WishlistToggle } from '../shared/WishlistToggle'
+import { colors } from '../../styles/colorPalette'
 
 const BookItemContainer = styled(Flex)<{ isHighlighted?: boolean }>`
   width: 1000px;
@@ -58,7 +59,7 @@ const BookAuthor = styled(Text)`
 const BookPrice = styled(Text)`
   font-size: 14px;
   font-weight: 700;
-  color: #0070f3;
+  color: ${colors.blue};
   white-space: nowrap;
   margin-left: 16px;
 `
