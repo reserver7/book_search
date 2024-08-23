@@ -17,7 +17,7 @@ export const fetchBooksFromAPI = async (
     `https://dapi.kakao.com/v3/search/book`,
     {
       params: { target, query, page: pageParam, size: 10 },
-      headers: { Authorization: `KakaoAK c5b65eb42d62119a052daaa1389c3483` },
+      headers: { Authorization: `${process.env.REACT_APP_REST_KEY}` },
     },
   )
 
